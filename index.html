@@ -182,7 +182,7 @@
 
 <button onclick="girar()">Girar</button>
 
-<div id="resultado"></div>
+<div id="resultadox"></div>
 
 <script>
   const premios = [
@@ -202,7 +202,7 @@
     girando = true;
 
     const ruleta = document.getElementById("ruleta");
-    const resultado = document.getElementById("resultado");
+    const resultadox = document.getElementById("resultadox");
 
     let vueltas = Math.floor(Math.random() * 5) + 5;
     let anguloFinal = Math.floor(Math.random() * 360);
@@ -213,7 +213,7 @@
 
     setTimeout(() => {
       let sector = Math.floor((360 - (anguloFinal % 360)) / 60) % 6;
-      resultado.innerText = "Ganaste: " + premios[sector];
+      resultadox.innerText = "Ganaste: " + premios[sector];
       girando = false;
     }, 4000);
   }
