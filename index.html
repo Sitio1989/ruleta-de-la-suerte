@@ -166,6 +166,58 @@
       document.getElementById("error").innerText = "Error: " + mensaje;
     }
   </script>
+<h1>🎡 Ruleta de Premios</h1>
+
+<div class="ruleta-container">
+  <div class="puntero"></div>
+  <div class="ruleta" id="ruleta">
+    <div class="sector"></div>
+    <div class="sector"></div>
+    <div class="sector"></div>
+    <div class="sector"></div>
+    <div class="sector"></div>
+    <div class="sector"></div>
+  </div>
+</div>
+
+<button onclick="girar()">Girar</button>
+
+<div id="resultado"></div>
+
+<script>
+  const premios = [
+    "💰 $10",
+    "🎁 Regalo",
+    "😢 Inténtalo otra vez",
+    "💵 $50",
+    "🎉 Premio sorpresa",
+    "🍀 $100"
+  ];
+
+  let girando = false;
+
+  function girar() {
+    if (girando) return;
+
+    girando = true;
+
+    const ruleta = document.getElementById("ruleta");
+    const resultado = document.getElementById("resultado");
+
+    let vueltas = Math.floor(Math.random() * 5) + 5;
+    let anguloFinal = Math.floor(Math.random() * 360);
+
+    let rotacion = (vueltas * 360) + anguloFinal;
+
+    ruleta.style.transform = `rotate(${rotacion}deg)`;
+
+    setTimeout(() => {
+      let sector = Math.floor((360 - (anguloFinal % 360)) / 60) % 6;
+      resultado.innerText = "Ganaste: " + premios[sector];
+      girando = false;
+    }, 4000);
+  }
+</script>
 
 </body>
 </html>
